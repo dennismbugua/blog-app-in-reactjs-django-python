@@ -78,13 +78,13 @@ WSGI_APPLICATION = 'blog_lyfe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# Database
+# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blog_lyfe',
-        'USER': 'postgres',
-        'PASSWORD': '[YOUR POSTGRES DATABASE PASSWORD]',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 
@@ -144,3 +144,16 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 SUMMERNOTE_THEME = 'bs4'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+
+
+
+
+
+
+
+
+
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
