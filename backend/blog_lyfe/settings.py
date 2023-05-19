@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+from pathlib import Path
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -78,15 +81,33 @@ WSGI_APPLICATION = 'blog_lyfe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+<<<<<<< HEAD
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+=======
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'blog_lyfe',
+#         'USER': 'postgres',
+#         'PASSWORD': '[YOUR POSTGRES DATABASE PASSWORD]',
+#         'HOST': 'localhost'
+#     }
+# }
+
+>>>>>>> 254673d (This is a new commit for what I originally planned to be amended)
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+<<<<<<< HEAD
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+=======
+        'NAME': BASE_DIR / 'db.sqlite3',
+>>>>>>> 254673d (This is a new commit for what I originally planned to be amended)
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -125,9 +146,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static')
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'build/static')
+# ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'

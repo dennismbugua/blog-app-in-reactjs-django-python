@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-const Category = (props) => {
+const Category = () => {
     const [blogs, setBlogs] = useState([]);
     const [currentCategory, setCurrentCategory] = useState('');
 
+    const {id} = useParams()
+    let url = id 
+
     useEffect(() => {
-        const category = props.match.params.id;
-        setCurrentCategory(capitalizeFirstLetter(category));
+        // const category = props.match.params.id;
+        
+        // setCurrentCategory(capitalizeFirstLetter(id));
 
         const config = {
             headers: {
@@ -18,7 +22,7 @@ const Category = (props) => {
 
         const fetchData = async () => {
             try {
-                const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/blog/category`, { category }, config);
+                const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/blog/category`, { id }, config);
                 setBlogs(res.data);
             }
             catch (err) {
@@ -27,13 +31,13 @@ const Category = (props) => {
         };
 
         fetchData();
-    }, [props.match.params.id]);
+    }, [id]);
 
-    const capitalizeFirstLetter = (word) => {
-        if (word)
-            return word.charAt(0).toUpperCase() + word.slice(1);
-        return '';
-    };
+    // const capitalizeFirstLetter = (word) => {
+    //     if (word)
+    //         return word.charAt(0).toUpperCase() + word.slice(1);
+    //     return '';
+    // };
 
     const getCategoryBlogs = () => {
         let list = [];
@@ -43,7 +47,7 @@ const Category = (props) => {
             return list.push(
                 <div className="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div className="col p-4 d-flex flex-column position-static">
-                        <strong className="d-inline-block mb-2 text-primary">{capitalizeFirstLetter(blogPost.category)}</strong>
+                        <strong className="d-inline-block mb-2 text-primary">{blogPost.category}</strong>
                         <h3 className="mb-0">{blogPost.title}</h3>
                         <div className="mb-1 text-muted">{blogPost.month} {blogPost.day}</div>
                         <p className="card-text mb-auto">{blogPost.excerpt}</p>
@@ -77,18 +81,18 @@ const Category = (props) => {
             <h3 className='display-4'>{currentCategory} Category</h3>
             <div className="nav-scroller py-1 mb-2">
                 <nav className="nav d-flex justify-content-between">
-                    <Link className="p-2 text-muted" to='/category/world'>World</Link>
-                    <Link className="p-2 text-muted" to='/category/environment'>Environment</Link>
-                    <Link className="p-2 text-muted" to='/category/technology'>Technology</Link>
-                    <Link className="p-2 text-muted" to='/category/design'>Design</Link>
-                    <Link className="p-2 text-muted" to='/category/culture'>Culture</Link>
-                    <Link className="p-2 text-muted" to='/category/business'>Business</Link>
-                    <Link className="p-2 text-muted" to='/category/politics'>Politics</Link>
-                    <Link className="p-2 text-muted" to='/category/opinion'>Opinion</Link>
-                    <Link className="p-2 text-muted" to='/category/science'>Science</Link>
-                    <Link className="p-2 text-muted" to='/category/health'>Health</Link>
-                    <Link className="p-2 text-muted" to='/category/style'>Style</Link>
-                    <Link className="p-2 text-muted" to='/category/travel'>Travel</Link>
+                    <Link className="p-2 text-muted" to='/category/world' exact="true">World</Link>
+                    <Link className="p-2 text-muted" to='/category/environment' exact="true">Environment</Link>
+                    <Link className="p-2 text-muted" to='/category/technology' exact="true">Technology</Link>
+                    <Link className="p-2 text-muted" to='/category/design' exact="true">Design</Link>
+                    <Link className="p-2 text-muted" to='/category/culture' exact="true">Culture</Link>
+                    <Link className="p-2 text-muted" to='/category/business' exact="true">Business</Link>
+                    <Link className="p-2 text-muted" to='/category/politics' exact="true">Politics</Link>
+                    <Link className="p-2 text-muted" to='/category/opinion' exact="true">Opinion</Link>
+                    <Link className="p-2 text-muted" to='/category/science' exact="true">Science</Link>
+                    <Link className="p-2 text-muted" to='/category/health' exact="true">Health</Link>
+                    <Link className="p-2 text-muted" to='/category/style' exact="true">Style</Link>
+                    <Link className="p-2 text-muted" to='/category/travel' exact="true">Travel</Link>
                 </nav>
             </div>
             {getCategoryBlogs()}

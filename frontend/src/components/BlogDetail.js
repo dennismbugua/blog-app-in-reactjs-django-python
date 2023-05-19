@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const BlogDetail = (props) => {
+export default function BlogDetails() {
+    
+    
+
     const [blog, setBlog] = useState({});
 
+    const {slug} = useParams()
+
+    let url = slug 
+
     useEffect(() => {
-        const slug = props.match.params.id;
+        // const slug = props.match.params.id;
 
         const fetchData = async () => {
             try {
@@ -19,7 +26,7 @@ const BlogDetail = (props) => {
         };
 
         fetchData();
-    }, [props.match.params.id]);
+    }, [slug]);
 
     const createBlog = () => {
         return {__html: blog.content}
@@ -42,5 +49,3 @@ const BlogDetail = (props) => {
         </div>
     );
 };
-
-export default BlogDetail;

@@ -5,11 +5,13 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 from blog.models import BlogPost
 from blog.serializers import BlogPostSerializer
 
+
 class BlogPostListView(ListAPIView):
     queryset = BlogPost.objects.order_by('-date_created')
     serializer_class = BlogPostSerializer
     lookup_field = 'slug'
     permission_classes = (permissions.AllowAny, )
+
 
 class BlogPostDetailView(RetrieveAPIView):
     queryset = BlogPost.objects.order_by('-date_created')
@@ -17,11 +19,13 @@ class BlogPostDetailView(RetrieveAPIView):
     lookup_field = 'slug'
     permission_classes = (permissions.AllowAny, )
 
+
 class BlogPostFeaturedView(ListAPIView):
     queryset = BlogPost.objects.all().filter(featured=True)
     serializer_class = BlogPostSerializer
     lookup_field = 'slug'
     permission_classes = (permissions.AllowAny, )
+
 
 class BlogPostCategoryView(APIView):
     serializer_class = BlogPostSerializer
@@ -29,8 +33,9 @@ class BlogPostCategoryView(APIView):
 
     def post(self, request, format=None):
         data = self.request.data
-        category = data['category']
-        queryset = BlogPost.objects.order_by('-date_created').filter(category__iexact=category)
+        category = data['id']
+        queryset = BlogPost.objects.order_by(
+            '-date_created').filter(category__iexact=category)
 
         serializer = BlogPostSerializer(queryset, many=True)
 
