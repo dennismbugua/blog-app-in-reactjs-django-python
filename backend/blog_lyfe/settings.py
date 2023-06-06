@@ -28,7 +28,7 @@ SECRET_KEY = '9lzxal=y%^vdxtai$zgvzxxl4=ppp__11o904lv7x*a^r8$o1i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['personal-blog.herokuapp.com', 'personal-blog.netlify.app']
 
 
 # Application definition
