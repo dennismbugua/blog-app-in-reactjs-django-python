@@ -22,7 +22,7 @@ const Category = () => {
 
         const fetchData = async () => {
             try {
-                const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/blog/category`, { id }, config);
+                const res = await axios.post(`https://personal-blog.herokuapp.com/api/blog/category`, { id }, config);
                 setBlogs(res.data);
             }
             catch (err) {
