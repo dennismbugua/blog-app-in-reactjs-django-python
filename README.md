@@ -99,8 +99,7 @@ class BlogPost(models.Model):
 ## 🎬 Demo & Documentation
 
 ### 📹 **Live Demo Video**
-*[Demo video will be uploaded to showcase the platform in action]*
-[![YT Video](https://github.com/dennismbugua/banking-system/blob/main/imgs/banking%20system%20YT%20screen%20shot.PNG?raw=true)](https://youtu.be/a5EP2GZ2TxM "Video Title")
+[![YT Video](https://github.com/dennismbugua/blog-app-in-reactjs-django-python/blob/main/frontend/public/imgs/blog%20lyfe%20img.PNG?raw=true)](https://youtu.be/a5EP2GZ2TxM "Video Title")
 
 ### 📖 **Detailed Blog Article**
 Read the full technical guide: https://dennismbugua.co.ke/articles/building-a-modern-blog-platform-react--django
