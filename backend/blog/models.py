@@ -10,7 +10,7 @@ class Categories(models.TextChoices):
     CULTURE = 'culture'
     BUSINESS = 'business'
     POLITICS = 'politics'
-    OPINION = 'opinion'
+    # OPINION = 'opinion'
     SCIENCE = 'science'
     HEALTH = 'health'
     STYLE = 'style'
@@ -20,7 +20,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField()
     category = models.CharField(max_length=50, choices=Categories.choices, default=Categories.WORLD)
-    thumbnail = models.ImageField(upload_to='photos/%Y/%m/%d/')
+    # thumbnail = models.ImageField(upload_to='photos/%Y/%m/%d/')
     excerpt = models.CharField(max_length=150)
     month = models.CharField(max_length=3)
     day = models.CharField(max_length=2)
@@ -29,6 +29,12 @@ class BlogPost(models.Model):
     date_created = models.DateTimeField(default=datetime.now, blank=True)
 
     def save(self, *args, **kwargs):
+        # Auto-populate month and day from date_created
+        if self.date_created:
+            self.month = self.date_created.strftime("%b")  # Short month name (Jan, Feb, etc.)
+            self.day = self.date_created.strftime("%d")    # Day with zero padding (01, 02, etc.)
+        
+        # Generate unique slug
         original_slug = slugify(self.title)
         queryset = BlogPost.objects.all().filter(slug__iexact=original_slug).count()
 
@@ -41,6 +47,7 @@ class BlogPost(models.Model):
 
         self.slug = slug
 
+        # Ensure only one featured post
         if self.featured:
             try:
                 temp = BlogPost.objects.get(featured=True)
