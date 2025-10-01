@@ -252,4 +252,4 @@ const categoryColors = {
 
 ---
 
-**Built with ❤️ by [Dennis Mbugua](https://x.com/ImpactfulDennis)**
+**Built with ❤️ by [Dennis](https://x.com/ImpactfulDennis)**
